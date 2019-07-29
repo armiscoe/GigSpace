@@ -3,7 +3,14 @@ var Gig = require('../models/gig')
 module.exports = {
     index,
     create,
-    gdelete
+    gdelete,
+    show
+}
+
+function show(req, res) {
+    Gig.findById(req.params.id)
+    .then(gig => res.json(gig))
+    .catch(err => res.status(400).json('Error: ' + err))
 }
 
 function gdelete(req, res) {
